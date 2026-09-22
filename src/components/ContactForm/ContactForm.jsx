@@ -1,5 +1,6 @@
 import { useId, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { addContact } from '../../redux/contactsSlice';
 
 import css from './ContactForm.module.css';
@@ -9,7 +10,8 @@ export const ContactForm = () => {
   const numberId = useId();
 
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.contacts);
+
+  const contacts = useSelector(state => state.contacts.items);
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -47,7 +49,6 @@ export const ContactForm = () => {
 
     dispatch(
       addContact({
-        id: crypto.randomUUID(),
         name: normalizedName,
         number: normalizedNumber,
       })
