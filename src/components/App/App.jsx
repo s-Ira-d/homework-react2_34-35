@@ -9,11 +9,13 @@ import { SearchBox } from '../SearchBox/SearchBox';
 
 import css from './App.module.css';
 
+import { selectIsLoading, selectError } from '../../redux/contactsSelectors.js';
+
 const App = () => {
   const dispatch = useDispatch();
 
-  const isLoading = useSelector(state => state.contacts.isLoading);
-  const error = useSelector(state => state.contacts.error);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchContacts());
